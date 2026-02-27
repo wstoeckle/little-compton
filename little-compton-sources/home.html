@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+
+
+<link href="/revize/plugins/setup/css/revize.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+//----- Check href of all <a...> tags, if it matchs page url and immediate parent is <LI>,
+//		append "active" to className of all ancestor <LI> tags until the parent of the <LI>
+//		tag is not <UL> or the parent of the <UL> is not another <LI> tag.
+var functionRef = function setClassActive()
+{
+	var e;
+	try
+	{
+		var pattern = new RegExp("http[s]?://.*?/(.*)[?#]?","");
+		var tags = document.getElementsByTagName("A");
+		if (tags)
+		{
+			for (var i=0;i<tags.length;i++)
+			{
+				var el = tags[i];
+				var resultsTag = el.href.match(pattern);
+				var resultsPage = location.href.match(pattern);
+				if (!resultsTag || !resultsPage) continue;
+				if (resultsTag[1] != resultsPage[1]) continue;
+	
+				// go up li tree marking this and all parent class=active
+				var li = el.parentNode;
+				while (li && li.tagName == 'LI')
+				{
+					if (li.className != '') 
+						li.className += ' ';
+					li.className += 'active';
+					var ul = li.parentNode;
+					if (!ul || ul.tagName != 'UL') break;
+					li = ul.parentNode;
+				}
+				//let's catch all links e.g. topnav, leftnav, quick links, etc
+				//break;	//found url match, quit checking tags
+			}
+		}
+	}
+	catch (e) {}
+}
+//----- Activate topnavActive once page loads
+if (typeof addEventListener != 'undefined') addEventListener('load', functionRef, false);	//standards browser
+else if (typeof attachEvent != 'undefined') attachEvent("onload", functionRef);				//IE early versions
+</script>
+
+
+
+<script type="text/javascript">
+
+
+
+</script>
+
+
+
+
+	
+	
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="_assets_/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="_assets_/fonts/font-awesome/css/font-awesome.css">
+	<!--[if (lt IE 9)]><script src="_assets_/plugins/tiny-slider/dist/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+	
+	<link rel="stylesheet" href="_assets_/plugins/owl.carousel/owl-carousel/owl.carousel.css">
+
+	<!-- Metadata Area Starts -->
+
+
+
+
+
+	<title>Little Compton, RI</title>
+	<meta property="og:title" content="Little Compton, RI" />
+
+
+
+	<meta name="keywords" content="Little Compton, RI"/>
+
+
+
+	<meta name="description" content=""/>
+	<meta property="og:description" content="" />
+
+
+	 
+
+<meta property="og:image" content="//webgen1.revize.com/revize/logo/Town seal.png?t=1734979347347" />
+
+
+
+	<meta name="robots" content="index, follow">
+
+
+
+<link rel="shortcut icon" href="favicon/favicon (13).ico?t=1734979347347">
+
+<link rel="apple-touch-icon" href="_assets_/images/touch-icon-ipad2.png?t=1734979347347">
+<link rel="apple-touch-icon" sizes="72x72" href="_assets_/images/touch-icon-ipad2.png?t=1734979347347">
+<link rel="apple-touch-icon" sizes="114x114" href="_assets_/images/touch-icon-ipad2.png?t=1734979347347">
+<link rel="apple-touch-icon" sizes="144x144" href="_assets_/images/touch-icon-ipad2.png?t=1734979347347">
+
+
+	<link href="/revize/plugins/revize_calendar/core/main.css" rel="stylesheet" />
+<link href="/revize/plugins/revize_calendar/daygrid/main.min.css" rel="stylesheet" />
+<link href="/revize/plugins/revize_calendar/timegrid/main.min.css" rel="stylesheet" />
+<link href="/revize/plugins/revize_calendar/list/main.min.css" rel="stylesheet" />
+<link href="_assets_/plugins/revizeCalendar/css/mini.css" rel="stylesheet" />
+<link href="/revize/plugins/revize_calendar/core/nav-panels.css" rel="stylesheet" /><script>
+	var defaultCalendarColor = "#3788d8";
+	var ImportCals = [];
+	var calendarProps = {'4' : { 'color' : '' , 'name' : 'calendar-list-options' },
+};
+	var RZCalendarTimezone = "";
+</script>
+
+
+	<link rel="stylesheet" href="_assets_/css/layout.css?t=1734979347347">
+	<link rel="stylesheet" href="_assets_/css/styles.css?t=1734979347347">
+
+	<!-- Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body id="homepage" class="">
+
+
+
+
+<script type="text/javascript">
+if (typeof(RZ) == 'undefined') RZ = {};
+if (!RZ.link) RZ.link = new Object();
+RZ.pagetype = 'template'
+RZ.baseurlprefix = ''
+RZ.baseurlpath = ''
+RZ.protocolRelativeRevizeBaseUrl='//webgen1.revize.com'
+
+RZ.pagetemplatename = 'index'
+RZ.pagetemplateid = '22'
+RZ.pagemodule = ''
+RZ.pagemoduleid = ''
+RZ.pagerecordid = '';
+
+RZ.pageid = 'index';
+RZ.pageparentid = '';
+RZ.pagesectionid = '0';
+RZ.pagesectionname = '';
+RZ.pagesectionlevel = '0';
+RZ.pagesectionfolder = '';
+RZ.pagesectionfilter = 'sectionid=0';
+RZ.pagelinkfilter = 'linklevel=0 and linksectionid=0';
+RZ.pagelinklevel = '0';
+RZ.pagelinkid = '-1';
+RZ.pageidfield = '';
+
+RZ.isnewrecord = false;
+RZ.editmodule = '';
+RZ.editrecordid = '';
+RZ.editrecordversion = '';
+RZ.editversion = '';
+RZ.editaction = '';
+
+RZ.page_roles = ''
+RZ.page_users = '94c4083803500d1949a3979e7f9cad5cb69e90c639dcd5cb5540063fde96bf65|c8a4907fc40020df54bb3bf396f32018e083763f006265b6af2f9395b4fa7eb2'
+RZ.page_key = 'index[]'
+RZ.parent_key = ''
+RZ.inherit_key = 'index[]'
+RZ.workflowname = ''
+RZ.permissions_options = ''
+RZ.permissions_module = 'webspace_page_permissions'
+RZ.webspace = 'littlecomptonri'
+RZ.webspacedesc = "Homesome";
+
+RZ.featurespattern = '(EZ)';
+null
+
+RZ.webspacelinksurl = ''
+RZ.webspacelinksurl = './webspace/links.html'
+RZ.workflowlist = ''
+RZ.revizeserverurl = 'https://webgen1.revize.com/revize/littlecomptonri';
+
+if (!RZ.nextseq) RZ.nextseq = {linknames:{},modules:{}};
+
+RZ.webspace_config = new Object();
+RZ.webspace_config.admin_email = "noreply@co.walla-walla.wa.us";
+RZ.webspace_config.calendar_options = "max_events=4";
+RZ.webspace_config.form_captcha = "yes";
+RZ.webspace_config.form_server = "revizeserver";
+RZ.webspace_config.form_technology = "jsp";
+RZ.webspace_config.formwizard_ftp_password = "";
+RZ.webspace_config.formwizard_ftp_port = "";
+RZ.webspace_config.formwizard_ftp_server = "";
+RZ.webspace_config.formwizard_ftp_user = "";
+RZ.webspace_config.formwizard_setup = "yes";
+RZ.webspace_config.formwizard_smtp_password = "xxx";
+RZ.webspace_config.formwizard_smtp_server = "xxx";
+RZ.webspace_config.formwizard_smtp_user = "xxx";
+RZ.webspace_config.google_analytics = "";
+RZ.webspace_config.home_pageid = "0";
+RZ.webspace_config.home_sectionid = "0";
+RZ.webspace_config.home_template = "home,index,sitemap";
+RZ.webspace_config.icon_email = "<img src=\"/revize/images/email_icon_yellow.gif\" width=\"16\" border=\"0\" height=\"17\" title=\"Request email notification when page changes\" alt=\"Request email notification when page changes\" style=\"\" />";
+RZ.webspace_config.image_maxheight = "3000";
+RZ.webspace_config.image_maxwidth = "3000";
+RZ.webspace_config.image_setup = "yes";
+RZ.webspace_config.isNewMenuManagerEnabled = "yes";
+RZ.webspace_config.livesite_url = "";
+RZ.webspace_config.menu_links_module = "links";
+RZ.webspace_config.menu_newsection = "";
+RZ.webspace_config.menu_nexturl = "webspace_menu-editform.jsp";
+RZ.webspace_config.menu_sections_module = "sections";
+RZ.webspace_config.menu_system = "custom";
+RZ.webspace_config.menu_version = "1.00";
+RZ.webspace_config.new_menu_manager_enabled = "yes";
+RZ.webspace_config.notify_return_url = "enotify/index.php";
+RZ.webspace_config.rte_setup = "yes";
+RZ.webspace_config.to_email = "";
+RZ.webspace_config.use_folders = "1";
+RZ.webspace_config.use_new_buttons = "yes";
+
+RZ.isauthenticationactive = true
+RZ.warning = ""
+RZ.adminwinmsg = null
+
+RZ.channels = 'revize,fileschannel';
+RZ.jsversion = 1.2</script>
+<script type="text/javascript" src="/revize/util/snippet_helper.js"></script>
+
+
+
+	
+
+<header id="header" aria-label="Site Header">
+
+	<a href="#main" id="skip" tabindex="0" class="btn">Skip to main content</a>
+	<div id="cookieConsent">
+		<div class="container-fluid">
+			<a href="javascript:void()" id="closeCookieConsent">
+				<i class="fa fa-times" aria-label="menu-dismiss"><span class="sr-only">close menu</span></i>
+			</a>
+			<div class="col-md-10">
+					<span>This website uses cookies to store your accessibility preferences. No personal / identifying information is stored.</span>
+			</div>
+			<div class="col-md-2">
+				<a href="javascript:void()" class="cookieConsentOK btn">Dismiss</a>
+			</div>
+		</div><!--/.container-fluid-->
+	</div><!--/.cookieConsent-->
+	<div class="accessibility-wrap">
+		<!-- Share widget make into an include file -->
+		<button type="button" class="share-btn floating-share-btn" data-toggle="modal" data-target="#shareModal" aria-label="share page">
+			<i class="fa fa-share-alt" aria-hidden="true"></i>
+		</button>
+	</div><!--/.accessibility-wrap-->
+	
+
+
+
+
+
+
+
+
+	<div id="header_float">
+		
+		<div id="header_top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-5">
+						<a href="./" class="logo-wrap">
+	
+	<img src="logo/Town seal.png" alt="Little Compton, RI logo">
+	
+</a><!--/.logo-wrap-->
+					</div><!--/.col-md-5-->
+					<div id="social_search" class="col-sm-7 text-right">
+						<div id="social-media-links">
+							
+
+
+						</div><!--/#social-media-links-->
+						<div id="google-translate" class="hidden">
+						<script>
+							function googleTranslateElementInit() {
+								new google.translate.TranslateElement({pagelanguage: 'en',
+									layout: google.translate.TranslateElement.InlineLayout.SIMPLE},
+									'google-translate');
+							}
+						</script>
+						<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+						</div><!--/#google-translate.control.hidden-sm.hidden-xs-->
+						<div id="translation-links">
+							<button type="button" id="translate-button" aria-haspopup="true" aria-expanded="false"><span class="sr-only">Translate Website</span><span class="notranslate">EN</span> <i class="fa fa-angle-down"></i></button>
+							<ul class="clearfix notranslate" aria-labelledby="translate-button" translate="no">
+								<li><a href="#" class="English" data-lang="English"><b>English</b></a></li>
+								<li><a href="#" class="Afrikaans" data-lang="Afrikaans">Afrikaans</a></li>
+								<li><a href="#" class="Albanian" data-lang="Albanian">Albanian</a></li>
+								<li><a href="#" class="Arabic" data-lang="Arabic">Arabic</a></li>
+								<li><a href="#" class="Armenian" data-lang="Armenian">Armenian</a></li>
+								<li><a href="#" class="Azerbaijani" data-lang="Azerbaijani">Azerbaijani</a></li>
+								<li><a href="#" class="Basque" data-lang="Basque">Basque</a></li>
+								<li><a href="#" class="Belarusian" data-lang="Belarusian">Belarusian</a></li>
+								<li><a href="#" class="Bengali" data-lang="Bengali">Bengali</a></li>
+								<li><a href="#" class="Bosnian" data-lang="Bosnian">Bosnian</a></li>
+								<li><a href="#" class="Bulgarian" data-lang="Bulgarian">Bulgarian</a></li>
+								<li><a href="#" class="Catalan" data-lang="Catalan">Catalan</a></li>
+								<li><a href="#" class="Cebuano" data-lang="Cebuano">Cebuano</a></li>
+								<li><a href="#" class="Chinese" data-lang="Chinese (Simplified)">Chinese (Simplified)</a></li>
+								<li><a href="#" class="Chinese" data-lang="Chinese (Traditional)">Chinese (Traditional)</a></li>
+								<li><a href="#" class="Croatian" data-lang="Croatian">Croatian</a></li>
+								<li><a href="#" class="Czech" data-lang="Czech">Czech</a></li>
+								<li><a href="#" class="Danish" data-lang="Danish">Danish</a></li>
+								<li><a href="#" class="Dutch" data-lang="Dutch">Dutch</a></li>
+								<li><a href="#" class="Esperanto" data-lang="Esperanto">Esperanto</a></li>
+								<li><a href="#" class="Estonian" data-lang="Estonian">Estonian</a></li>
+								<li><a href="#" class="Filipino" data-lang="Filipino">Filipino</a></li>
+								<li><a href="#" class="Finnish" data-lang="Finnish">Finnish</a></li>
+								<li><a href="#" class="French" data-lang="French">French</a></li>
+								<li><a href="#" class="Galician" data-lang="Galician">Galician</a></li>
+								<li><a href="#" class="Georgian" data-lang="Georgian">Georgian</a></li>
+								<li><a href="#" class="German" data-lang="German">German</a></li>
+								<li><a href="#" class="Greek" data-lang="Greek">Greek</a></li>
+								<li><a href="#" class="Gujarati" data-lang="Gujarati">Gujarati</a></li>
+								<li><a href="#" class="Haitian Creole" data-lang="Haitian Creole">Haitian Creole</a></li>
+								<li><a href="#" class="Hausa" data-lang="Hausa">Hausa</a></li>
+								<li><a href="#" class="Hebrew" data-lang="Hebrew">Hebrew</a></li>
+								<li><a href="#" class="Hindi" data-lang="">Hindi</a></li>
+								<li><a href="#" class="Hmong" data-lang="Hmong">Hmong</a></li>
+								<li><a href="#" class="Hungarian" data-lang="Hungarian">Hungarian</a></li>
+								<li><a href="#" class="Icelandic" data-lang="Icelandic">Icelandic</a></li>
+								<li><a href="#" class="Igbo" data-lang="Igbo">Igbo</a></li>
+								<li><a href="#" class="Indonesian" data-lang="Indonesian">Indonesian</a></li>
+								<li><a href="#" class="Irish" data-lang="Irish">Irish</a></li>
+								<li><a href="#" class="Italian" data-lang="Italian">Italian</a></li>
+								<li><a href="#" class="Japanese" data-lang="Japanese">Japanese</a></li>
+								<li><a href="#" class="Javanese" data-lang="Javanese">Javanese</a></li>
+								<li><a href="#" class="Kannada" data-lang="Kannada">Kannada</a></li>
+								<li><a href="#" class="Khmer" data-lang="Khmer">Khmer</a></li>
+								<li><a href="#" class="Korean" data-lang="Korean">Korean</a></li>
+								<li><a href="#" class="Lao" data-lang="Lao">Lao</a></li>
+								<li><a href="#" class="Latin" data-lang="Latin">Latin</a></li>
+								<li><a href="#" class="Latvian" data-lang="Latvian">Latvian</a></li>
+								<li><a href="#" class="Lithuanian" data-lang="Lithuanian">Lithuanian</a></li>
+								<li><a href="#" class="Macedonian" data-lang="Macedonian">Macedonian</a></li>
+								<li><a href="#" class="Malay" data-lang="Malay">Malay</a></li>
+								<li><a href="#" class="Maltese" data-lang="Maltese">Maltese</a></li>
+								<li><a href="#" class="Maori" data-lang="Maori">Maori</a></li>
+								<li><a href="#" class="Marathi" data-lang="Marathi">Marathi</a></li>
+								<li><a href="#" class="Mongolian" data-lang="Mongolian">Mongolian</a></li>
+								<li><a href="#" class="Nepali" data-lang="Nepali">Nepali</a></li>
+								<li><a href="#" class="Norwegian" data-lang="Norwegian">Norwegian</a></li>
+								<li><a href="#" class="Persian" data-lang="Persian">Persian</a></li>
+								<li><a href="#" class="Polish" data-lang="Polish">Polish</a></li>
+								<li><a href="#" class="Portuguese" data-lang="Portuguese">Portuguese</a></li>
+								<li><a href="#" class="Punjabi" data-lang="Punjabi">Punjabi</a></li>
+								<li><a href="#" class="Romanian" data-lang="Romanian">Romanian</a></li>
+								<li><a href="#" class="Russian" data-lang="Russian">Russian</a></li>
+								<li><a href="#" class="Serbian" data-lang="Serbian">Serbian</a></li>
+								<li><a href="#" class="Slovak" data-lang="Slovak">Slovak</a></li>
+								<li><a href="#" class="Slovenian" data-lang="Slovenian">Slovenian</a></li>
+								<li><a href="#" class="Somali" data-lang="Somali">Somali</a></li>
+								<li><a href="#" class="Spanish" data-lang="Spanish">Spanish</a></li>
+								<li><a href="#" class="Swahili" data-lang="Swahili">Swahili</a></li>
+								<li><a href="#" class="Swedish" data-lang="Swedish">Swedish</a></li>
+								<li><a href="#" class="Tamil" data-lang="Tamil">Tamil</a></li>
+								<li><a href="#" class="Telugu" data-lang="Telugu">Telugu</a></li>
+								<li><a href="#" class="Thai" data-lang="Thai">Thai</a></li>
+								<li><a href="#" class="Turkish" data-lang="Turkish">Turkish</a></li>
+								<li><a href="#" class="Ukrainian" data-lang="Ukrainian">Ukrainian</a></li>
+								<li><a href="#" class="Urdu" data-lang="Urdu">Urdu</a></li>
+								<li><a href="#" class="Vietnamese" data-lang="Vietnamese">Vietnamese</a></li>
+								<li><a href="#" class="Welsh" data-lang="Welsh">Welsh</a></li>
+								<li><a href="#" class="Yiddish" data-lang="Yiddish">Yiddish</a></li>
+								<li><a href="#" class="Yoruba" data-lang="Yoruba">Yoruba</a></li>
+								<li><a href="#" class="Zulu" data-lang="Zulu">Zulu</a></li>
+							</ul>
+						</div><!--/#translation-links-->
+						<div id="search">
+							<form class="search-form" method="GET" action="search.php" role="search" aria-label="sitewide">
+								<label for="search-input" class="sr-only">Search</label>
+								<input name="q" class="form-control search-input" placeholder="How can we help you today?" type="search" id="search-input">
+								<button aria-label="Submit Search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+							</form>
+						</div><!-- /#search -->
+					</div><!--/.col-md-7-->
+				</div><!--/.row-->
+			</div><!--/.container-->
+		</div><!--/#header_top-->
+		<div id="toggles" class="hidden-lg hidden-md">
+			<button aria-label="search" id="search-toggle" class="fa fa-search"></button>
+			<button aria-label="navigation" id="nav-toggle" class="fa fa-bars"></button>
+		</div><!--/#toggles.hidden-lg.hidden-md-->
+		<div id="topnav_wrap">
+		<div class="container">
+			<div class="row">
+				<nav class="col-md-12" aria-label="top navigation">
+				
+				
+
+
+ 
+<ul id="nav" class="topnav v2_05-23-2012">
+	<li class="menuLI level0 menuDisplay li-78 children"><a class="menuA level0 menuDisplay" href="government/index.php" target="_self">Government</a>
+		<ul class="menuUL level1 menuHidden ul-79">
+			<li class="menuLI level1 menuHidden li-79 children"><a class="menuA level1 menuHidden" href="government/town_council/index.php" target="_self">Town Council</a>
+				<ul class="menuUL level2 menuHidden ul-80">
+					<li class="menuLI level2 menuHidden li-80"><a class="menuA level2 menuHidden" href="government/town_council/agendas.php" target="_self">Agendas</a></li>
+					<li class="menuLI level2 menuHidden li-81"><a class="menuA level2 menuHidden" href="https://www.youtube.com/channel/UCNoKeQBPql33aEtqzOXHO9g" target="_new">Meeting Videos</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-82 children"><a class="menuA level1 menuHidden" href="government/boards_commissions/index.php" target="_self">Boards & Commissions</a>
+				<ul class="menuUL level2 menuHidden ul-83">
+					<li class="menuLI level2 menuHidden li-83"><a class="menuA level2 menuHidden" href="https://opengov.sos.ri.gov/OpenMeetings" target="_new">Secretary of State Agendas & Minutes</a></li>
+					<li class="menuLI level2 menuHidden li-490"><a class="menuA level2 menuHidden" href="calendar.php" target="_self">Calendar</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-84"><a class="menuA level1 menuHidden" href="government/document_center.php" target="_self">Document Center</a></li>
+			<li class="menuLI level1 menuHidden li-85"><a class="menuA level1 menuHidden" href="government/town_administration.php" target="_self">Town Administration</a></li>
+			<li class="menuLI level1 menuHidden li-86"><a class="menuA level1 menuHidden" href="https://ecode360.com/LI4093" target="_new">Town Code</a></li>
+		</ul>
+	</li>
+	<li class="menuLI level0 menuDisplay li-87 children"><a class="menuA level0 menuDisplay" href="departments/index.php" target="_self">Departments</a>
+		<ul class="menuUL level1 menuHidden ul-88">
+			<li class="menuLI level1 menuHidden li-88 children"><a class="menuA level1 menuHidden" href="departments/building_inspections/index.php" target="_self">Building & Zoning Department</a>
+				<ul class="menuUL level2 menuHidden ul-89">
+					<li class="menuLI level2 menuHidden li-89"><a class="menuA level2 menuHidden" href="http://littlecomptonri.viewpointcloud.com/" target="_new">Permits and Inspections</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-90 children"><a class="menuA level1 menuHidden" href="departments/emergency_management/index.php" target="_self">Emergency Management</a>
+				<ul class="menuUL level2 menuHidden ul-91">
+					<li class="menuLI level2 menuHidden li-91"><a class="menuA level2 menuHidden" href="departments/emergency_management/hazard_mitigation.php" target="_self">Hazard Mitigation</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-92 children"><a class="menuA level1 menuHidden" href="https://www.littlecomptonfirerescue.com/" target="_new">Fire Rescue</a>
+				<ul class="menuUL level2 menuHidden ul-93">
+					<li class="menuLI level2 menuHidden li-93"><a class="menuA level2 menuHidden" href="https://public.coderedweb.com/CNE/en-US/BF4BA752DF30" target="_new">Code Red</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-94"><a class="menuA level1 menuHidden" href="https://next.axisgis.com/Little_ComptonRI/" target="_new">GIS Maps</a></li>
+			<li class="menuLI level1 menuHidden li-95 children"><a class="menuA level1 menuHidden" href="departments/harbor.php" target="_self">Harbor</a>
+				<ul class="menuUL level2 menuHidden ul-96">
+					<li class="menuLI level2 menuHidden li-96"><a class="menuA level2 menuHidden" href="departments/boat_launching.php" target="_self">Boat Launching</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-97"><a class="menuA level1 menuHidden" href="departments/planning_zoning.php" target="_self">Planning & Zoning</a></li>
+			<li class="menuLI level1 menuHidden li-98"><a class="menuA level1 menuHidden" href="departments/police/index.php" target="_self">Police</a></li>
+			<li class="menuLI level1 menuHidden li-126 children"><a class="menuA level1 menuHidden" href="departments/public_works/index.php" target="_self">Public Works</a>
+				<ul class="menuUL level2 menuHidden ul-127">
+					<li class="menuLI level2 menuHidden li-127"><a class="menuA level2 menuHidden" href="departments/public_works/transfer_station.php" target="_self">Transfer Station</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-129 children"><a class="menuA level1 menuHidden" href="departments/tax_assessor/index.php" target="_self">Tax Assessor</a>
+				<ul class="menuUL level2 menuHidden ul-130">
+					<li class="menuLI level2 menuHidden li-130"><a class="menuA level2 menuHidden" href="https://gis.vgsi.com/LittleComptonRI/Default.aspx" target="_new">Reassessment Projects</a></li>
+					<li class="menuLI level2 menuHidden li-131"><a class="menuA level2 menuHidden" href="government/document_center.php#outer-54 " target="_self">Documents & Forms</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-134 children"><a class="menuA level1 menuHidden" href="departments/town_clerk/index.php" target="_self">Town Clerk</a>
+				<ul class="menuUL level2 menuHidden ul-135">
+					<li class="menuLI level2 menuHidden li-135"><a class="menuA level2 menuHidden" href="https://elections.ri.gov/voter-resources" target="_new">Elections & Voter Information</a></li>
+					<li class="menuLI level2 menuHidden li-136"><a class="menuA level2 menuHidden" href="government/document_center.php#outer-57 " target="_self">Documents & Forms</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-137 children"><a class="menuA level1 menuHidden" href="departments/treasurer/index.php" target="_self">Treasurer</a>
+				<ul class="menuUL level2 menuHidden ul-138">
+					<li class="menuLI level2 menuHidden li-138"><a class="menuA level2 menuHidden" href="government/document_center.php#outer-52 " target="_self">Financial Reports</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li class="menuLI level0 menuDisplay li-67"><a class="menuA level0 menuDisplay" href="public_records_requests/index.php" target="_self">Public Records Requests</a></li>
+	<li class="menuLI level0 menuDisplay li-68 children"><a class="menuA level0 menuDisplay" href="community/index.php" target="_self">Community</a>
+		<ul class="menuUL level1 menuHidden ul-147">
+			<li class="menuLI level1 menuHidden li-147 children"><a class="menuA level1 menuHidden" href="https://en.wikipedia.org/wiki/Little_Compton,_Rhode_Island" target="_new">About Little Compton</a>
+				<ul class="menuUL level2 menuHidden ul-151">
+					<li class="menuLI level2 menuHidden li-151"><a class="menuA level2 menuHidden" href="community/faqs.php" target="_self">FAQs</a></li>
+					<li class="menuLI level2 menuHidden li-154"><a class="menuA level2 menuHidden" href="community/history.php" target="_self">History</a></li>
+					<li class="menuLI level2 menuHidden li-156"><a class="menuA level2 menuHidden" href="https://littlecompton.org/" target="_new">Little Compton Historical Society</a></li>
+					<li class="menuLI level2 menuHidden li-158"><a class="menuA level2 menuHidden" href="calendar.php" target="_self">Meetings & Events</a></li>
+					<li class="menuLI level2 menuHidden li-159"><a class="menuA level2 menuHidden" href="newslist.php" target="_self">News & Announcements</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-164"><a class="menuA level1 menuHidden" href="https://lccenter.org/" target="_new">Community Center</a></li>
+			<li class="menuLI level1 menuHidden li-149"><a class="menuA level1 menuHidden" href="https://www.lcsd.k12.ri.us/" target="_new">Education</a></li>
+			<li class="menuLI level1 menuHidden li-165"><a class="menuA level1 menuHidden" href="https://brownell-libraryri.org/" target="_new">Library</a></li>
+			<li class="menuLI level1 menuHidden li-170 children"><a class="menuA level1 menuHidden" href="community/resources/index.php" target="_self">Resources</a>
+				<ul class="menuUL level2 menuHidden ul-172">
+					<li class="menuLI level2 menuHidden li-172"><a class="menuA level2 menuHidden" href="https://littlecomptonri.portal.opengov.com/" target="_new">Building Permits</a></li>
+					<li class="menuLI level2 menuHidden li-173"><a class="menuA level2 menuHidden" href="https://public.coderedweb.com/CNE/en-US/BF4BA752DF30" target="_new">Code Red</a></li>
+					<li class="menuLI level2 menuHidden li-174"><a class="menuA level2 menuHidden" href="https://elections.ri.gov/voter-resources" target="_new">Elections & Voter Information</a></li>
+					<li class="menuLI level2 menuHidden li-150"><a class="menuA level2 menuHidden" href="departments/emergency_management/index.php" target="_self">Emergency Management</a></li>
+					<li class="menuLI level2 menuHidden li-175"><a class="menuA level2 menuHidden" href="https://www.searchiqs.com/RICOMP/Login.aspx" target="_new">Land Records</a></li>
+					<li class="menuLI level2 menuHidden li-176"><a class="menuA level2 menuHidden" href="https://gis.vgsi.com/LittleComptonRI/Default.aspx" target="_new">Real Estate Appraisal</a></li>
+					<li class="menuLI level2 menuHidden li-177"><a class="menuA level2 menuHidden" href="community/resources/senior_services.php" target="_self">Senior Services</a></li>
+					<li class="menuLI level2 menuHidden li-178"><a class="menuA level2 menuHidden" href="departments/public_works/transfer_station.php" target="_self">Trash & Recycling</a></li>
+				</ul>
+			</li>
+			<li class="menuLI level1 menuHidden li-532 children"><a class="menuA level1 menuHidden" href="community/recreation.php" target="_self">Recreation</a>
+				<ul class="menuUL level2 menuHidden ul-161">
+					<li class="menuLI level2 menuHidden li-161"><a class="menuA level2 menuHidden" href="community/beaches.php" target="_self">Beaches</a></li>
+					<li class="menuLI level2 menuHidden li-162"><a class="menuA level2 menuHidden" href="departments/boat_launching.php" target="_self">Boat Launching</a></li>
+					<li class="menuLI level2 menuHidden li-166"><a class="menuA level2 menuHidden" href="community/parks.php" target="_self">Parks</a></li>
+					<li class="menuLI level2 menuHidden li-168"><a class="menuA level2 menuHidden" href="community/places_of_interest.php" target="_self">Places Of Interest</a></li>
+					<li class="menuLI level2 menuHidden li-541"><a class="menuA level2 menuHidden" href="community/forms___calendars.php" target="_self">Forms & Calendars</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li class="menuLI level0 menuDisplay li-69"><a class="menuA level0 menuDisplay" href="contact_us/index.php" target="_self">Contact Us</a></li>
+	<li class="menuLI level0 menuDisplay li-70"><a class="menuA level0 menuDisplay" href="https://www.youtube.com/channel/UCNoKeQBPql33aEtqzOXHO9g" target="_new">Town Live Stream</a></li>
+</ul>
+
+<script>
+    (function(d){
+      var s = d.createElement("script");
+      /* uncomment the following line to override default position*/
+       s.setAttribute("data-position", 5);
+      /* uncomment the following line to override default size (values: small, large)*/
+      /* s.setAttribute("data-size", "small");*/
+      /* uncomment the following line to override default language (e.g., fr, de, es, he, nl, etc.)*/
+      /* s.setAttribute("data-language", "language");*/
+      /* uncomment the following line to override color set via widget (e.g., #053f67)*/
+      /* s.setAttribute("data-color", "#053e67");*/
+      /* uncomment the following line to override type set via widget (1=person, 2=chair, 3=eye, 4=text)*/
+      /* s.setAttribute("data-type", "1");*/
+      /* s.setAttribute("data-statement_text:", "Our Accessibility Statement");*/
+      /* s.setAttribute("data-statement_url", "http://www.example.com/accessibility")";*/
+      /* uncomment the following line to override support on mobile devices*/
+      /* s.setAttribute("data-mobile", true);*/
+      /* uncomment the following line to set custom trigger action for accessibility menu*/
+      /* s.setAttribute("data-trigger", "triggerId")*/
+      s.setAttribute("data-account", "D0rQUZqWL7");
+      s.setAttribute("src", "https://cdn.userway.org/widget.js");
+      (d.body || d.head).appendChild(s);
+    })(document)
+    </script>
+    <noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
+
+
+
+
+
+
+				
+					<div class="float_button_above rzEditWrap">
+						<script language="JavaScript" type="text/JavaScript">
+							RZ.module = 'revize_topnav';
+							RZ.nexturl = "/revize/plugins/menus/webspace_menu-editlist.jsp?pageid=index&"
+											+ "linksfilter=linkplacement=topnav and linkparentid=0&"
+											+ "numberoflevels=3&"
+											+ "linkoptions=url,template,file&"
+											+ "linknewsection=*all*";
+							RZ.img = '<span class="rzBtn">Edit Top Nav</span>';
+							RZ.caption = '';
+							RZ.set="links.linkplacement=topnav";
+							RZ.options = '';
+							if (typeof RZaction != 'undefined') RZaction('editlist');
+						</script>
+						<script language="JavaScript" type="text/JavaScript">
+							RZ.module = 'global';
+							RZ.recordid = '';
+							RZ.nexturl = "/revize/webgen_includes/homesome/editforms/social-editform.jsp";
+							RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+							RZ.img = '<span class="rzBtn">Edit Social</span>';
+							RZ.set = 'global.pageid=index';
+							RZ.options = '';
+							if (typeof RZaction != 'undefined') RZaction('editform');
+						</script>
+
+						<script language="JavaScript" type="text/JavaScript">
+							RZ.module = 'alert';
+							RZ.recordid = '';
+							RZ.nexturl = "/revize/webgen_includes/homesome/editforms/alert-editform.jsp";
+							RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+							RZ.img = '<span class="rzBtn">Edit Alert</span>';
+							RZ.set = 'alert.pageid=alert';
+							RZ.options = '';
+							if (typeof RZaction != 'undefined') RZaction('editform');
+						</script>
+					</div>
+				
+				</nav><!--/.col-md-12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+		</div><!--/#topnav_wrap-->
+	</div><!--/#header_float-->
+</header>
+<section id="slider" role="complementary">
+	<div class="rzEditWrap rzSliderBtns">
+		<script language="JavaScript" type="text/JavaScript">
+			RZ.module = 'slider';
+			RZ.nexturl = "/revize/webgen_includes/homesome/editforms/slider-editlist.jsp?pageid=index";
+			RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+			RZ.img = '<span class="rzBtn">Edit Slider</span>';
+			RZ.caption = '';
+			RZ.options = '';
+			if (typeof RZaction != 'undefined') RZaction('editlist');
+		</script>&nbsp;
+		
+			<script language="JavaScript" type="text/JavaScript">
+				RZ.module = 'global';
+				RZ.recordid = '';
+				RZ.nexturl = "/revize/webgen_includes/homesome/optionspanel/global_styles-editform.jsp";
+				RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+				RZ.img = '<span class="rzBtn">Edit Global Styles</span>';
+				RZ.set = 'global.pageid=index';
+				RZ.options = '';
+				if (typeof RZaction != 'undefined') RZaction('editform');
+			</script>
+			<script language="JavaScript" type="text/JavaScript">
+				RZ.module = 'freeform';
+				RZ.recordid = '';
+				RZ.nexturl = "/revize/webgen_includes/homesome/editforms/metadata-editform.jsp";
+				RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+				RZ.img = '<span class="rzBtn">Edit Metadata</span';
+				RZ.set = "freeform.pageid=index";
+				RZ.options = '';
+				if (typeof RZaction != 'undefined') RZaction('editform');
+			</script>
+			&nbsp;
+			<script language="JavaScript" type="text/JavaScript">
+				RZ.nexturl = '';
+				RZ.img = '<img src="images/edit/permissions.jpg" alt="Permissions" border="0" />';
+				RZ.options = '';
+				if (typeof RZaction != 'undefined') RZaction('permissions');
+			</script>
+	</div><!--/.rzEditWrap-->
+<script language="JavaScript" type="text/JavaScript">
+if (typeof RZlistbegin != 'undefined') RZlistbegin(1)
+</script>
+<script language="JavaScript" type="text/JavaScript">
+if (typeof RZlinktemplate != 'undefined') RZlinktemplate('slider','','')
+if (typeof RZ.nextseq != 'undefined') RZ.nextseq.modules['slider_1']={field:'seq_no',seq:'4.00'};
+</script>
+	<ul class="bxslider">
+		<li style="background: url('Slider Images/Walkers - Copy.jpg?t=202409031409110') center center / cover no-repeat"><span class="sr-only">Walkers - Copy</span></li><li style="background: url('fileds from W Jagger.jpg?t=202508190906130') center center / cover no-repeat"><span class="sr-only">field</span></li><li style="background: url('pond.jpg?t=202508200822390') center center / cover no-repeat"><span class="sr-only">flowers</span></li>
+	</ul><!--/.bxslider-->
+	<div id="date_weather">
+		<div id="slider_date"><time></time></div>
+		<div id="weather"></div>
+	</div><!--/#time_weather-->
+</section><!--/#slider-->
+<main id="main" aria-label="Main Content">
+	
+	<div class="rzEditWrap rzQuicklinkWrap">
+		<script language="JavaScript" type="text/JavaScript">
+			RZ.module = 'imagelink';
+			RZ.nexturl = "/revize/webgen_includes/homesome/editforms/quick-links-editlist.jsp?pageid=index-quicks";
+			RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+			RZ.img = '<span class="rzBtn">Edit Quick Links</span>';
+			RZ.caption = '';
+			RZ.options = '';
+			if (typeof RZaction != 'undefined') RZaction('editlist');
+		</script>
+	</div><!--/.rzEditWrap-->
+	<section id="slider_quicks" aria-label="Quick Links">
+		<a href="government/town_council/agendas.php" target="_self" class="quick-item">
+			<div class="quick-background"><i class="fa fa-align-justify"></i></div>
+			<div class="quick-content"><div class="quick-text">Agendas</div></div>
+		</a><!--/.quick-item-->
+				<a href="government/boards_commissions/index.php" target="_self" class="quick-item">
+			<div class="quick-background"><i class="fa fa-users"></i></div>
+			<div class="quick-content"><div class="quick-text">Boards & Commissions</div></div>
+		</a><!--/.quick-item-->
+				<a href="community/faqs.php" target="_self" class="quick-item">
+			<div class="quick-background"><i class="fa fa-comment-o"></i></div>
+			<div class="quick-content"><div class="quick-text">FAQs</div></div>
+		</a><!--/.quick-item-->
+				<a href="public_records_requests/index.php" target="_self" class="quick-item">
+			<div class="quick-background"><i class="fa fa-align-center"></i></div>
+			<div class="quick-content"><div class="quick-text">Public Records Requests</div></div>
+		</a><!--/.quick-item-->
+				<a href="government/document_center.php" target="_self" class="quick-item">
+			<div class="quick-background"><i class="fa fa-align-justify"></i></div>
+			<div class="quick-content"><div class="quick-text">Document Center</div></div>
+		</a><!--/.quick-item-->
+		
+	</section><!--/#slider_quicks-->
+	<div id="events_news">
+		<div id="events_tabs" role="tablist" aria-label="Events and News">
+			<button id="events_tab" class="event-tab current" aria-selected="true" role="tab" aria-controls="events_container">Events</button>
+			<button id="news_tab" class="event-tab" aria-selected="false" role="tab" aria-controls="news_container" tabindex="-1">News</button>
+		</div><!--/#events_tabs-->
+		<div id="events_container">
+			<div class="event-container current" aria-hidden="false">
+				<div class="container">
+					<div class="row">
+						<div id="mini-events" data-template-file="template.html"></div>
+					</div>
+					<a href="calendar.php" class="btn">See All Events</a>
+				</div><!--/.container-->
+			</div>
+			<div class="event-container" aria-hidden="true">
+				<div class="container">
+					<div id="news_wrap">
+
+	<div>
+	<script language="JavaScript" type="text/JavaScript">
+		RZ.module = 'news'; RZ.linkname = '';
+		RZ.template = '*none*'; RZ.recordid = 'new';
+		RZ.nexturl = "/revize/webgen_includes/homesome/editforms/news-editform.jsp";
+		RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+		RZ.img = '<span class="rzBtn">Add News Item</span>';
+		RZ.set = 'news.pageid=news-main';
+		RZ.options = '';
+		if (typeof RZaction != 'undefined') RZaction('newitem');
+	</script>
+	</div>
+
+<div class="row">
+	<div class="cal-event">
+		<div class="rzItemEdit clearfix">
+			<a name="news_rz52"></a>
+			<span>
+				<script language="JavaScript" type="text/JavaScript">
+				RZ.module = 'news'; RZ.linkname = '';
+				RZ.template = '*none*'; RZ.recordid = '52';
+				RZ.nexturl = "/revize/webgen_includes/homesome/editforms/news-editform.jsp";
+				RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+				RZ.img = '<i title="Edit Item"  class="fa fa-pencil"><span class="sr-only">Edit</span></i>';
+				RZ.set = '';
+				RZ.options = '';
+				if (typeof RZaction != 'undefined') RZaction('edititem');
+				</script>
+			</span>
+			<span>
+				<script language="JavaScript" type="text/JavaScript">
+				RZ.module = 'news';
+				RZ.recordid = '52';
+				RZ.name = 'RZdelete' + RZ.recordid;
+				RZ.img = '<i title="Delete Item" class="fa fa-trash"><span class="sr-only">Delete</span></i>';
+				RZ.options = '';
+				if (typeof RZaction != 'undefined') RZaction('delete');
+				</script>
+			</span>
+		</div>
+		<a href="news_detail_T28_R52.php" class="news-item">
+			<time class="news-date"><span>Feb</span>20</time>
+			<div class="news-content">
+				<div class="news-title">DRAFT 2026-27 Town Administrator Proposed Budget</div>
+			</div><!--/.news-content-->
+		</a><!--/.news-item-->
+	</div><!--/.cal-event-->
+
+		
+
+	<div class="cal-event">
+		<div class="rzItemEdit clearfix">
+			<a name="news_rz51"></a>
+			<span>
+				<script language="JavaScript" type="text/JavaScript">
+				RZ.module = 'news'; RZ.linkname = '';
+				RZ.template = '*none*'; RZ.recordid = '51';
+				RZ.nexturl = "/revize/webgen_includes/homesome/editforms/news-editform.jsp";
+				RZ.popupwidth = ''; RZ.popupheight = ''; RZ.popupscroll = '';
+				RZ.img = '<i title="Edit Item"  class="fa fa-pencil"><span class="sr-only">Edit</span></i>';
+				RZ.set = '';
+				RZ.options = '';
+				if (typeof RZaction != 'undefined') RZaction('edititem');
+				</script>
+			</span>
+			<span>
+				<script language="JavaScript" type="text/JavaScript">
+				RZ.module = 'news';
+				RZ.recordid = '51';
+				RZ.name = 'RZdelete' + RZ.recordid;
+				RZ.img = '<i title="Delete Item" class="fa fa-trash"><span class="sr-only">Delete</span></i>';
+				RZ.options = '';
+				if (typeof RZaction != 'undefined') RZaction('delete');
+				</script>
+			</span>
+		</div>
+		<a href="news_detail_T28_R51.php" class="news-item">
+			<time class="news-date"><span>Feb</span>13</time>
+			<div class="news-content">
+				<div class="news-title">Farm, Forest, and Open Space Informational Session</div>
+			</div><!--/.news-content-->
+		</a><!--/.news-item-->
+	</div><!--/.cal-event-->
+</div>
+		
+</div><!--/#news_wrap-->
+
+					<a href="newslist.php" class="btn">See All News</a>
+				</div><!--/.container-->
+			</div>
+		</div><!--/#events_container-->
+	</div><!--/#events_news-->
+	<div id="about_intro">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<img src="Slider Images/Lighthouse - Copy.jpg?t=202409031410320" alt="Lighthouse - Copy" id="about_photo">
+				</div><!--/.col-md-4-->
+				<div class="col-md-7 col-md-offset-1">
+					<script language="JavaScript" type="text/JavaScript">
+						RZ.module = 'global';
+						RZ.nexturl = '/revize/webgen_includes/homesome/editforms/learn-editform.jsp';
+						RZ.img = '<span class="rzBtn">Edit Section</span>';
+						RZ.set = 'pageid=index';
+						RZ.options = '';
+						if (typeof RZaction != 'undefined') RZaction('editform');
+					</script>
+					<div id="about_content">Town Newsletter Signups<br /><span style="font-size: 14px;">The Town will be launching an email newsletter in the near future. </span><br /><span style="font-size: 14px;"><span style="color: #f1c40f;"><a style="color: #f1c40f;" rel="noopener" href="https://forms.office.com/g/FjCLDwe2A9" target="_blank">Register your interest here</a></span> to get notified when it goes live!</span><br /><br /><br />Welcome to the official website for the Town of Little Compton, Rhode Island</div>
+					<a href="community/index.php" target="_self" class="btn">Learn More <span class="sr-only"> about Little Compton, RI</span></a>
+				</div><!--/.col-md-7-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--#about_intro-->
+</main>
+<footer id="footer" aria-label="Footer">
+	<section id="modal-section">
+		<button type="button" class="share-btn floating-share-btn" data-toggle="modal" data-target="#shareModal" >
+		<i class="fa fa-share-alt"></i>
+		<span>Share <span class="sr-only">this page</span></span>
+	</button>
+
+	<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModal">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close Modal"><span aria-hidden="true">&times;</span></button>
+					<h2 class="modal-title" id="myModalLabel">Share this page</h2>
+				</div>
+				<div class="modal-body">
+					<div class="copylink">
+						<p>Copy and paste this code into your website.</p>
+						<pre tabindex="0" role="textbox" onfocus="selectText(this)" aria-label="Copy and paste this code into your website.">&lt;a href="http://www.littlecomptonri.org/">Your Link Name&lt;/a&gt;</pre>
+					</div><!-- /.copylink -->
+					<div class="share-btns">
+						<p>Share this page on your favorite Social network</p>
+						<ul class="row" aria-label="Share this page on your favorite Social network" style="list-style:none;margin:0;padding:0;">
+							<li class="col-sm-4" style="margin-bottom:0;">
+								<a href="https://www.facebook.com/sharer/sharer.php?u=http://www.littlecomptonri.org/" class="btn-facebook" onclick="return !window.open(this.href, 'facebook ', 'width=500,height=500')"
+								target="_blank">
+									<i class="fa fa-facebook"></i> Facebook
+								</a>
+							</li>
+							<li class="col-sm-4" style="margin-bottom:0;">
+								<a href="https://www.twitter.com/intent/tweet?url=http://www.littlecomptonri.org/" class="btn-twitter" onclick="return !window.open(this.href, 'twitter ', 'width=500,height=500')"
+								target="_blank">
+									<i class="fa fa-twitter"></i> Twitter
+								</a>
+							</li>
+							<li class="col-sm-4" style="margin-bottom:0;">
+								<a href="https://www.reddit.com/submit?url=http://www.littlecomptonri.org/" class="btn-reddit" onclick="return !window.open(this.href, 'redit ', 'width=500,height=500')"
+								target="_blank">
+									<i class="fa fa-reddit"></i> Reddit
+								</a>
+							</li>
+						</ul><!-- /.row -->
+					</div><!-- /.share-btns -->
+					<button type="button" class="btn btn-success btn-lg" data-dismiss="modal" aria-label="Close Modal">Close</button>
+				</div><!-- /.modal-body -->
+			</div>
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</section><!-- /#modal-section -->
+
+<script>
+function selectText(element) {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
+</script>	<div id="footer_content">
+			
+
+		<div class="footer-33">
+			<a href="./" class="logo-wrap">
+				
+				<img src="logo/Town seal.png?t=202409031402530" alt="Little Compton, RI logo">
+				
+			</a><!--/.logo-wrap-->
+			<div id="footer_address"></div><!--/#footer_address-->
+		</div><!--/.footer-33-->
+		<div class="footer-66">
+			<div id="footer_socials">
+				<script language="JavaScript" type="text/JavaScript">
+					RZ.module = 'global';
+					RZ.nexturl = '/revize/webgen_includes/homesome/editforms/footer-editform.jsp';
+					RZ.img = '<span class="rzBtn">Edit Section</span>';
+					RZ.set = 'pageid=index';
+					RZ.options = '';
+					if (typeof RZaction != 'undefined') RZaction('editform');
+				</script>			<a href="http://www.google.com" target="_blank" class="btn">Need Help?</a>
+				
+			</div>
+			<nav id="footer_links">
+				<script language="JavaScript" type="text/JavaScript">
+					RZ.module = 'links';
+					RZ.nexturl = "/revize/plugins/menus/webspace_menu-editlist.jsp?pageid=index&"
+							   + "linksfilter=linkplacement=footer-nav-1 and linkparentid=0&"
+							   + "numberoflevels=1&"
+							   + "linkoptions=url,file&"
+							   + "linknewsection=*all*";
+					RZ.img = '<span class="rzBtn">Edit Links</span>';
+					RZ.caption = '';
+					RZ.set="links.linkplacement=footer-nav-1,links.linkparentid=0";
+					RZ.options = '';
+					if (typeof RZaction != 'undefined') RZaction('editlist');
+					</script>				<ul>
+		
+					<li><a href="departments/emergency_management/index.php" target="_self">Emergency Management</a></li>
+				
+					<li><a href="departments/police/index.php" target="_self">Police</a></li>
+				
+					<li><a href="https://weather.com/weather/today/l/4bd81f9abcfb76604651b09d2be69b7cb80759928ad99b358b2d84375660a34e" target="_new">Weather</a></li>
+				
+				</ul>
+			</nav><!--/#footer_links-->
+		</div><!--/.footer-66-->
+	</div><!--/#footer_content-->
+	<div id="footer_copyright">
+		<div class="container">
+				<script language="JavaScript" type="text/JavaScript">
+			RZ.module = 'global';
+			RZ.nexturl = '/revize/webgen_includes/homesome/editforms/title-editform.jsp?field_name=copyright';
+			RZ.img = '<span class="rzBtn">Edit Copyright</span>';
+			RZ.set = 'pageid=index';
+			RZ.options = '';
+			if (typeof RZaction != 'undefined') RZaction('editform');
+		</script>			<span class="footer-section">Little Compton, RI | 40 Commons, PO Box 226, Little Compton, RI 02837&#160; &#160;&nbsp; &#8226; Questions? 401-635-4400</span>
+			<span class="footer-section">Powered by <a href="https://www.revize.com" id="revize-link">revize.</a>, the Government Website Experts
+			
+			
+			<a id="revize-login" href="https://webgen1.revize.com/revize/security/index.jsp?webspace=littlecomptonri&filename=/index.php">Login</a>
+		</div><!--/.col-md-12#revize-->
+	</div>
+</footer><!--/#footer-->
+
+<script src="_assets_/js/jquery.min.js"></script>
+<script src="_assets_/plugins/modernizr/modernizr.custom.js"></script>
+	<script src="_assets_/plugins/YTPlayer/jquery.mb.YTPlayer.min.js"></script>
+	<script src="_assets_/plugins/owl.carousel/owl-carousel/owl.carousel.min.js"></script>
+
+<script src="_assets_/plugins/jquery.bxslider/jquery.bxslider.min.js"></script>
+<script src="_assets_/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="_assets_/plugins/cookie.js/cookies.js"></script>
+<div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="event-modal" aria-hidden="true">
+  <div id="event-modal-dialog" class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+	  <div class="event-modal-header">
+		  <div class="modal-event-date-wrap">
+			<span class="modal-event-date-number"></span>
+			<span class="modal-event-date-month"></span>
+		  </div>
+      </div>
+	  <div class="modal-body" id="modal-event-body">
+		 <h2 aria-label="Event Title" class="modal-title" id="modal-event-title"></h2>
+		 <h3 aria-label="Event Subtitle" class="modal-subtitle" id="modal-event-subtitle"></h3>
+		 <div class="modal-description clearfix" id="modal-event-description"></div>
+		 <div class="modal-location" id="modal-event-location"></div>
+	  </div>
+      <div class="modal-footer">
+        <button id="modal-close-button" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="#" id="modal-event-readmore" class="btn btn-primary">Read More</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/revize/plugins/revize_calendar/moment.min.js"></script>
+<script src="/revize/plugins/revize_calendar/moment-timezone.min.js"></script>
+<script src="/revize/plugins/revize_calendar/rrule.js"></script>
+<script src="/revize/plugins/revize_calendar/ical.min.js"></script>
+<script src="/revize/plugins/revize_calendar/core/main.min.js"></script>
+<script src="/revize/plugins/revize_calendar/google-calendar/main.min.js"></script>
+<script src="/revize/plugins/revize_calendar/rrule/main.min.js"></script>
+<script src="/revize/plugins/revize_calendar/list/main.min.js"></script>
+<script src="/revize/plugins/revize_calendar/daygrid/main.min.js"></script>
+<script src="/revize/plugins/revize_calendar/timegrid/main.min.js"></script>
+<script src="/revize/plugins/revize_calendar/doT.min.js"></script>
+<script src="/revize/plugins/revize_calendar/ics/ics.deps.min.js"></script>
+<script src="/revize/plugins/revize_calendar/mini.js"></script>
+
+<script src="_assets_/js/scripts.js?t=1734979347347"></script>
+
+
+
+
+
+</body>
+</html>
+

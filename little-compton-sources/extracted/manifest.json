@@ -1,0 +1,66 @@
+[
+  {
+    "pdf": "fy2023-audit.pdf",
+    "pages": 130,
+    "text_file": "fy2023-audit.txt",
+    "tables_file": "fy2023-audit.tables.csv",
+    "table_rows": 84,
+    "text_chars": 348324
+  },
+  {
+    "pdf": "fy2024-audit.pdf",
+    "pages": 129,
+    "text_file": "fy2024-audit.txt",
+    "tables_file": "fy2024-audit.tables.csv",
+    "table_rows": 27,
+    "text_chars": 355996
+  },
+  {
+    "pdf": "fy2025-budget-committee-report.pdf",
+    "pages": 28,
+    "text_file": "fy2025-budget-committee-report.txt",
+    "tables_file": "fy2025-budget-committee-report.tables.csv",
+    "table_rows": 93,
+    "text_chars": 41628
+  },
+  {
+    "pdf": "fy2025-tax-rates-assessed-2023.pdf",
+    "pages": 1,
+    "text_file": "fy2025-tax-rates-assessed-2023.txt",
+    "tables_file": "fy2025-tax-rates-assessed-2023.tables.csv",
+    "table_rows": 40,
+    "text_chars": 2643
+  },
+  {
+    "pdf": "fy2026-tax-rates-assessed-2024.pdf",
+    "pages": 1,
+    "text_file": "fy2026-tax-rates-assessed-2024.txt",
+    "tables_file": "fy2026-tax-rates-assessed-2024.tables.csv",
+    "table_rows": 40,
+    "text_chars": 2947
+  },
+  {
+    "pdf": "fy2027-budget-warrant-format.pdf",
+    "pages": 4,
+    "text_file": "fy2027-budget-warrant-format.txt",
+    "tables_file": "fy2027-budget-warrant-format.tables.csv",
+    "table_rows": 156,
+    "text_chars": 3977
+  },
+  {
+    "pdf": "fy2027-capital-analysis.pdf",
+    "pages": 1,
+    "text_file": "fy2027-capital-analysis.txt",
+    "tables_file": "fy2027-capital-analysis.tables.csv",
+    "table_rows": 0,
+    "text_chars": 2300
+  },
+  {
+    "pdf": "fy2027-draft-budget-summary.pdf",
+    "pages": 44,
+    "text_file": "fy2027-draft-budget-summary.txt",
+    "tables_file": "fy2027-draft-budget-summary.tables.csv",
+    "table_rows": 126,
+    "text_chars": 104767
+  }
+]

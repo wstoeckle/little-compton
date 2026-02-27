@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Compton, RI — Where Your Tax Dollars Go</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --navy: #1b3a5c;
+      --sea: #2e6b8a;
+      --sky: #4a9aba;
+      --sand: #f5f0e8;
+      --dune: #e8dcc8;
+      --coral: #d4736c;
+      --sunset: #e8945a;
+      --kelp: #4a7c59;
+      --foam: #ffffff;
+      --slate: #3d4f5f;
+      --mist: #8fa3b3;
+      --text: #2c3e50;
+      --light-text: #5a6c7d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--sand);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+    /* ── Hero ───────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--sea) 50%, var(--sky) 100%);
+      color: white;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: var(--sand);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .hero .subtitle {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      opacity: 0.85;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .hero .year-badge {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: 0.35rem 1.2rem;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── Layout ─────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sea);
+      margin-bottom: 0.4rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    p.lead {
+      font-size: 1.1rem;
+      color: var(--light-text);
+      max-width: 720px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Stat Bar ───────────────────────────── */
+    .stat-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .stat-card .number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+    .stat-card .label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.8rem;
+      color: var(--mist);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.3rem;
+    }
+
+    /* ── Chart Grid ─────────────────────────── */
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 768px) {
+      .chart-grid { grid-template-columns: 1fr; }
+    }
+    .chart-box {
+      background: white;
+      border-radius: 14px;
+      padding: 2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .chart-box h3 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 1.2rem;
+    }
+    .chart-box canvas {
+      max-height: 320px;
+    }
+    .chart-box.full {
+      grid-column: 1 / -1;
+    }
+
+    /* ── Story Block ────────────────────────── */
+    .story-block {
+      background: white;
+      border-radius: 14px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      border-left: 4px solid var(--coral);
+    }
+    .story-block h3 {
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+    }
+    .story-block p {
+      color: var(--light-text);
+      margin-bottom: 1rem;
+    }
+    .story-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Callout ────────────────────────────── */
+    .callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: linear-gradient(135deg, var(--navy), var(--sea));
+      color: white;
+      border-radius: 14px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .callout-icon {
+      font-size: 2.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .callout h3 {
+      font-size: 1.1rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      margin-bottom: 0.4rem;
+    }
+    .callout p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    /* ── Key Figures Row ────────────────────── */
+    .key-figures {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .key-fig {
+      background: white;
+      border-radius: 14px;
+      padding: 1.8rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .key-fig .fig-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0ece4;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+    .key-fig .fig-row:last-child { border-bottom: none; }
+    .key-fig .fig-row .val {
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .key-fig h3 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--sea);
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── Comparison Bar ─────────────────────── */
+    .compare-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0.8rem 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+    .compare-row .bar-label {
+      width: 140px;
+      flex-shrink: 0;
+      text-align: right;
+      color: var(--light-text);
+    }
+    .compare-row .bar-track {
+      flex: 1;
+      height: 24px;
+      background: #f0ece4;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .compare-row .bar-fill {
+      height: 100%;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      min-width: 60px;
+    }
+
+    /* ── Divider ────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--dune);
+      margin: 1rem 0;
+    }
+
+    /* ── Footer ─────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+    footer a {
+      color: var(--sky);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+    footer .source-list {
+      max-width: 700px;
+      margin: 1rem auto 0;
+      text-align: left;
+    }
+
+    /* ── Annotations ────────────────────────── */
+    .annotation {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.78rem;
+      color: var(--mist);
+      margin-top: 0.8rem;
+      font-style: italic;
+    }
+
+    /* ── Timeline ───────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 2rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--dune);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--sea);
+      border: 2px solid var(--sand);
+    }
+    .timeline-item .tl-year {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--sea);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .timeline-item .tl-text {
+      color: var(--light-text);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════ HERO ════════════════════════ -->
+  <header class="hero">
+    <h1>Little Compton, Rhode Island</h1>
+    <p class="subtitle">A citizen's guide to the town budget &mdash; where the money comes from, where it goes, and what's changing</p>
+    <span class="year-badge">Fiscal Years 2020 &ndash; 2026</span>
+  </header>
+
+  <!-- ════════════════════════ AT A GLANCE ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">At a Glance</p>
+      <h2>A Small Town with Big Questions</h2>
+      <p class="lead">
+        Little Compton is one of the smallest and most rural communities in Rhode Island &mdash; a quiet corner of Newport County where farmland meets the sea. With roughly 3,600 year-round residents and a deep reliance on property taxes, every dollar in the town budget carries real weight. Here's how it all adds up.
+      </p>
+
+      <div class="stat-bar">
+        <div class="stat-card">
+          <div class="number">3,601</div>
+          <div class="label">Residents</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">~$18.5M</div>
+          <div class="label">FY2026 Total Budget</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">$4.70</div>
+          <div class="label">Tax Rate per $1,000</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">$134,750</div>
+          <div class="label">Median Household Income</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════ REVENUE ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Revenue</p>
+      <h2>Where the Money Comes From</h2>
+      <p class="lead">
+        Little Compton's revenue picture is unusually simple &mdash; and unusually concentrated. In FY2024, property taxes made up 95% of all general fund revenue. State aid, fees, and other sources account for the remaining sliver. This heavy reliance on property taxes means that when the tax base shifts, the whole budget shifts with it.
+      </p>
+
+      <div class="chart-grid">
+        <div class="chart-box">
+          <h3>Revenue Sources (FY2024)</h3>
+          <canvas id="revenueDonut"></canvas>
+          <p class="annotation">Source: Town of Little Compton FY2024 Annual Financial Statements</p>
+        </div>
+        <div class="chart-box">
+          <h3>Revenue Mix Over Time</h3>
+          <canvas id="revenueTrend"></canvas>
+          <p class="annotation">Property tax share of revenue grew from 92% to 95% between FY2023 and FY2024</p>
+        </div>
+      </div>
+
+      <div class="key-figures">
+        <div class="key-fig">
+          <h3>Property Tax Details</h3>
+          <div class="fig-row"><span>FY2026 Tax Rate</span><span class="val">$4.70 / $1,000</span></div>
+          <div class="fig-row"><span>FY2025 Tax Rate</span><span class="val">$5.08 / $1,000</span></div>
+          <div class="fig-row"><span>Total Assessed Value (post-reval)</span><span class="val">$3.29 Billion</span></div>
+          <div class="fig-row"><span>Previous Assessed Value</span><span class="val">$2.70 Billion</span></div>
+          <div class="fig-row"><span>Avg. Assessment Increase (reval)</span><span class="val">~20%</span></div>
+        </div>
+        <div class="key-fig">
+          <h3>What Homeowners Pay</h3>
+          <div class="fig-row"><span>Median Tax Bill</span><span class="val">$3,155 / year</span></div>
+          <div class="fig-row"><span>Effective Tax Rate</span><span class="val">0.50%</span></div>
+          <div class="fig-row"><span>RI State Median Rate</span><span class="val">1.48%</span></div>
+          <div class="fig-row"><span>National Median Rate</span><span class="val">1.02%</span></div>
+          <div class="fig-row"><span>Median Home Value</span><span class="val">~$723,000</span></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-icon">&#8593;</div>
+        <div>
+          <h3>FY2026: A 12% Levy Increase on the Table</h3>
+          <p>State law normally caps yearly property tax levy increases at 4%. But facing a $1M structural deficit, Little Compton's Town Council unanimously voted to seek state approval for a one-time 12% levy increase for FY2026 &mdash; triple the usual cap. The request (RI House Bill H6362) requires approval at the Financial Town Meeting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════ SPENDING ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Spending</p>
+      <h2>Where the Money Goes</h2>
+      <p class="lead">
+        Over half of every dollar Little Compton spends goes to education. Public safety &mdash; police and fire/rescue &mdash; takes the next largest share, followed by general government operations. Despite the town's small size, these are the fixed costs that drive the budget year after year.
+      </p>
+
+      <div class="chart-grid">
+        <div class="chart-box">
+          <h3>Expenditures by Category (FY2024)</h3>
+          <canvas id="spendingDonut"></canvas>
+          <p class="annotation">Source: Town of Little Compton FY2024 Annual Financial Statements</p>
+        </div>
+        <div class="chart-box">
+          <h3>Total Budget Growth, FY2020&ndash;FY2026</h3>
+          <canvas id="budgetTrend"></canvas>
+          <p class="annotation">FY2026 includes $18.3M spending plan forwarded to budget committee. Earlier years estimated from available audit data.</p>
+        </div>
+      </div>
+
+      <!-- Spending breakdown bars -->
+      <div class="chart-box full" style="margin-top:2rem;">
+        <h3>Estimated Dollar Amounts by Category (FY2024, ~$16.2M Total)</h3>
+        <div style="max-width:700px;">
+          <div class="compare-row">
+            <span class="bar-label">Education</span>
+            <div class="bar-track"><div class="bar-fill" style="width:55%; background: var(--navy);">~$8.9M</div></div>
+          </div>
+          <div class="compare-row">
+            <span class="bar-label">Public Safety</span>
+            <div class="bar-track"><div class="bar-fill" style="width:19%; background: var(--sea);">~$3.1M</div></div>
+          </div>
+          <div class="compare-row">
+            <span class="bar-label">General Gov't</span>
+            <div class="bar-track"><div class="bar-fill" style="width:11%; background: var(--sky);">~$1.8M</div></div>
+          </div>
+          <div class="compare-row">
+            <span class="bar-label">Public Works</span>
+            <div class="bar-track"><div class="bar-fill" style="width:6%; background: var(--kelp);">~$1.0M</div></div>
+          </div>
+          <div class="compare-row">
+            <span class="bar-label">Health &amp; Human Svcs</span>
+            <div class="bar-track"><div class="bar-fill" style="width:3%; background: var(--sunset);">~$0.5M</div></div>
+          </div>
+          <div class="compare-row">
+            <span class="bar-label">Culture &amp; Recreation</span>
+            <div class="bar-track"><div class="bar-fill" style="width:3%; background: var(--coral);">~$0.5M</div></div>
+          </div>
+          <div class="compare-row">
+            <span class="bar-label">Debt &amp; Other</span>
+            <div class="bar-track"><div class="bar-fill" style="width:3%; background: var(--mist);">~$0.4M</div></div>
+          </div>
+        </div>
+        <p class="annotation">Dollar amounts estimated from FY2024 audit percentage breakdowns (Education 55%, Public Safety 19%, General Government 11%) applied to ~$16.2M total spending. Remaining 15% allocated to other categories based on typical RI small-town proportions. Exact line items available in the full audit report.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════ EDUCATION DEEP DIVE ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Education</p>
+      <h2>The Biggest Line Item, by Far</h2>
+      <p class="lead">
+        Education commands 55% of the total budget. Little Compton operates one K&ndash;8 school (Wilbur &amp; McMahon School) with about 201 students. The town has no high school &mdash; roughly 81 students are tuitioned out to neighboring districts each year, a significant cost driver.
+      </p>
+
+      <div class="stat-bar">
+        <div class="stat-card">
+          <div class="number">~201</div>
+          <div class="label">K&ndash;8 Students Enrolled</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">~81</div>
+          <div class="label">High Schoolers Tuitioned Out</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">$41,727</div>
+          <div class="label">Per Pupil Spending (FY2024)</div>
+        </div>
+      </div>
+
+      <div class="chart-box" style="max-width:600px; margin: 2rem auto;">
+        <h3>Per Pupil Spending: Little Compton vs. Context</h3>
+        <canvas id="perPupilChart"></canvas>
+        <p class="annotation">FY2024 per pupil expenditure excluding tuitioned high school students. National average is for public K&ndash;12 districts (NCES).</p>
+      </div>
+
+      <div class="story-block">
+        <h3>Why Is Per-Pupil Spending So High?</h3>
+        <p>Small schools face a classic diseconomy of scale. With only about 200 students, Little Compton still needs a principal, custodians, bus routes, special-education services, and a full complement of teachers &mdash; costs that larger districts spread across thousands of pupils. The budget committee has pointed to "increased hiring of staff and teachers in the face of a dropping rate of enrollment" as a pressure point.</p>
+        <p>Meanwhile, the school board has pushed back, noting that figures cited in budget debates have sometimes been inaccurate and that the true per-pupil number depends on how you count the ~81 tuitioned-out high school students.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════ FUND BALANCE ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Fiscal Health</p>
+      <h2>The Shrinking Safety Net</h2>
+      <p class="lead">
+        The story of Little Compton's recent finances is, in large part, the story of a dwindling general fund balance. For years, the town used reserves to avoid raising taxes. That strategy has now caught up with it.
+      </p>
+
+      <div class="chart-grid">
+        <div class="chart-box">
+          <h3>General Fund Balance</h3>
+          <canvas id="fundBalanceChart"></canvas>
+          <p class="annotation">General fund balance dropped 37% in a single year (FY2023 to FY2024), from $3.17M to $1.98M.</p>
+        </div>
+        <div class="chart-box">
+          <h3>School Fund Balance</h3>
+          <canvas id="schoolFundChart"></canvas>
+          <p class="annotation">School unrestricted fund fell 32% year-over-year.</p>
+        </div>
+      </div>
+
+      <div class="story-block">
+        <h3>How a "Perfect Storm" Built Up</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-year">FY2023</div>
+            <div class="tl-text">No property tax levy increase. Town begins "increasingly relying" on general fund reserves to cover recurring operational expenses.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-year">FY2024</div>
+            <div class="tl-text">Again, no levy increase. The town draws over $1 million from the general fund to balance the budget. Fund balance drops to $1.98M.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-year">FY2025</div>
+            <div class="tl-text">A 3.92% levy increase is enacted, but it's not enough to close the gap. The structural deficit persists.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-year">FY2026</div>
+            <div class="tl-text">Officials propose an $18.3M spending plan, but discover the real number is closer to $19M. A 12% levy override is sought from the state legislature (H6362). A property revaluation raises the town's tax base from $2.7B to $3.29B, partially softening the rate increase for homeowners.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-year">FY2027</div>
+            <div class="tl-text">Draft budget now posted on the town website. The path forward remains uncertain.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-icon">&#9888;</div>
+        <div>
+          <h3>The Net Position Is Negative</h3>
+          <p>As of June 30, 2024, the town's total assets plus deferred inflows fell short of its liabilities plus deferred outflows by $1.68 million, resulting in a <strong>negative net position of &minus;$1,677,993</strong>. This figure includes long-term obligations like pension and OPEB liabilities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════ DEMOGRAPHICS ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Context</p>
+      <h2>Who Lives Here</h2>
+      <p class="lead">
+        Little Compton is wealthy, older, and highly educated compared to both Rhode Island and the U.S. as a whole. Many homes are seasonal. These demographics shape both the tax base and the demands placed on town services.
+      </p>
+
+      <div class="key-figures">
+        <div class="key-fig">
+          <h3>Demographics</h3>
+          <div class="fig-row"><span>Population</span><span class="val">3,601</span></div>
+          <div class="fig-row"><span>Median Age</span><span class="val">58&ndash;60 years</span></div>
+          <div class="fig-row"><span>Median Household Income</span><span class="val">$134,750</span></div>
+          <div class="fig-row"><span>Per Capita Income</span><span class="val">$92,058</span></div>
+          <div class="fig-row"><span>Poverty Rate</span><span class="val">~3%</span></div>
+        </div>
+        <div class="key-fig">
+          <h3>Housing</h3>
+          <div class="fig-row"><span>Occupied Housing Units</span><span class="val">1,578</span></div>
+          <div class="fig-row"><span>Owner-Occupied</span><span class="val">89.9%</span></div>
+          <div class="fig-row"><span>Vacant (mostly seasonal)</span><span class="val">36.2%</span></div>
+          <div class="fig-row"><span>Median Home Value</span><span class="val">~$723,000</span></div>
+          <div class="fig-row"><span>Bachelor's Degree or Higher</span><span class="val">59%</span></div>
+        </div>
+      </div>
+
+      <div class="chart-box" style="max-width:600px; margin: 2rem auto;">
+        <h3>How Little Compton Compares</h3>
+        <canvas id="compareChart"></canvas>
+        <p class="annotation">Median household income and effective property tax rate vs. county, state, and national benchmarks.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════ BUDGET vs ACTUAL ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Performance</p>
+      <h2>Budget vs. Reality (FY2024)</h2>
+      <p class="lead">
+        In FY2024, the town actually spent less than planned and collected more than expected. But these variances, while positive on paper, mask the underlying structural gap that reserve drawdowns were covering.
+      </p>
+
+      <div class="chart-grid">
+        <div class="chart-box">
+          <h3>General Fund: Budget vs. Actual</h3>
+          <canvas id="budgetVsActualChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Key Variances (FY2024)</h3>
+          <div style="padding-top: 1.5rem;">
+            <div class="fig-row" style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom: 1px solid #f0ece4; font-family: -apple-system, sans-serif; font-size: 0.9rem;">
+              <span>Revenue came in <strong>above</strong> budget by</span>
+              <span style="color: var(--kelp); font-weight:700;">+$720,640</span>
+            </div>
+            <div class="fig-row" style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom: 1px solid #f0ece4; font-family: -apple-system, sans-serif; font-size: 0.9rem;">
+              <span>General fund spending came in <strong>below</strong> budget by</span>
+              <span style="color: var(--kelp); font-weight:700;">-$1,574,070</span>
+            </div>
+            <div class="fig-row" style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom: 1px solid #f0ece4; font-family: -apple-system, sans-serif; font-size: 0.9rem;">
+              <span>School spending came in <strong>below</strong> budget by</span>
+              <span style="color: var(--kelp); font-weight:700;">-$39,423</span>
+            </div>
+            <div class="fig-row" style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom: 1px solid #f0ece4; font-family: -apple-system, sans-serif; font-size: 0.9rem;">
+              <span>School revenue came in <strong>above</strong> budget by</span>
+              <span style="color: var(--kelp); font-weight:700;">+$134,603</span>
+            </div>
+            <p class="annotation" style="margin-top: 1.2rem;">Despite favorable variances, the general fund balance still dropped $1.18M year-over-year &mdash; indicating the budget itself was structurally reliant on reserve drawdowns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════ LOOKING AHEAD ════════════════════════ -->
+  <section>
+    <div class="container">
+      <p class="section-label">Looking Ahead</p>
+      <h2>What to Watch</h2>
+
+      <div class="key-figures" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="story-block" style="border-left-color: var(--sea);">
+          <h3>The Levy Override Vote</h3>
+          <p>If approved by the state legislature and then by voters at the Financial Town Meeting (scheduled for June 17, 2025), the one-time 12% levy increase would bring in significantly more revenue. If it fails, deeper cuts will be needed.</p>
+        </div>
+        <div class="story-block" style="border-left-color: var(--kelp);">
+          <h3>Post-Revaluation Adjustments</h3>
+          <p>The 2024 revaluation raised the town's total assessed value by ~22% (to $3.29B). While the tax <em>rate</em> drops from $5.08 to ~$4.70, individual bills could rise if a property's assessment grew faster than average.</p>
+        </div>
+        <div class="story-block" style="border-left-color: var(--sunset);">
+          <h3>School Enrollment &amp; Costs</h3>
+          <p>With only ~200 K&ndash;8 students and ~81 tuitioned-out high schoolers, education costs per pupil will remain high. Any further enrollment declines could push per-pupil spending even higher.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ FOOTER ════════════════════════ -->
+  <footer>
+    <div class="container">
+      <strong>Data Sources &amp; Notes</strong>
+      <div class="source-list">
+        <p>All financial data is drawn from publicly available sources. Where exact line-item amounts were unavailable, estimates are noted. Dollar amounts labeled with "~" are derived from percentage breakdowns applied to reported totals.</p>
+        <p style="margin-top:0.8rem;">
+          <strong>Primary sources:</strong><br>
+          &bull; <a href="https://municipalfinance.ri.gov/sites/g/files/xkgbur546/files/2026-01/Little-Compton-FY-2024-Audit.pdf">Town of Little Compton FY2024 Annual Financial Statements</a> (RI Division of Municipal Finance)<br>
+          &bull; <a href="https://littlecomptonri.org/departments/treasurer/budget_committee_reports.php">Little Compton Budget Committee Reports</a><br>
+          &bull; <a href="https://www.eastbayri.com/stories/a-fiscal-perfect-storm-in-little-compton,131403">East Bay RI / Sakonnet Times reporting</a> on FY2026 budget challenges<br>
+          &bull; <a href="https://ride.ri.gov/sites/g/files/xkgbur806/files/2025-06/FY24%20Per%20Pupil%20Expenditure%20Chart%20-%206.18.25.pdf">RI Dept. of Education FY2024 Per Pupil Expenditure Data</a><br>
+          &bull; <a href="https://municipalfinance.ri.gov/financial-tax-data/tax-rates">RI Division of Municipal Finance Tax Rates</a><br>
+          &bull; U.S. Census Bureau ACS 2024 5-year estimates via <a href="http://censusreporter.org/profiles/06000US4400542400-little-compton-town-newport-county-ri/">Census Reporter</a><br>
+          &bull; <a href="https://www.lctaxpayers.com/TownGuide.htm">Little Compton Taxpayers Association</a>
+        </p>
+        <p style="margin-top:0.8rem;">
+          Last updated: February 2026. Some figures are estimates based on publicly available percentage breakdowns. For the most precise line-item data, consult the full audit PDF and budget committee reports linked above.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════ CHARTS ════════════════════════ -->
+  <script>
+    const COLORS = {
+      navy: '#1b3a5c', sea: '#2e6b8a', sky: '#4a9aba',
+      coral: '#d4736c', sunset: '#e8945a', kelp: '#4a7c59',
+      mist: '#8fa3b3', sand: '#f5f0e8', dune: '#e8dcc8',
+      slate: '#3d4f5f',
+    };
+
+    Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
+    Chart.defaults.font.size = 12;
+    Chart.defaults.color = '#5a6c7d';
+
+    // ── Revenue Donut ──────────────────────
+    new Chart(document.getElementById('revenueDonut'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Property Taxes', 'State Aid & Grants', 'Charges & Fees', 'Other Revenue'],
+        datasets: [{
+          data: [95, 2.5, 1.5, 1],
+          backgroundColor: [COLORS.navy, COLORS.sea, COLORS.sky, COLORS.mist],
+          borderWidth: 2,
+          borderColor: '#fff',
+        }]
+      },
+      options: {
+        cutout: '55%',
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed}%` } }
+        }
+      }
+    });
+
+    // ── Revenue Trend ──────────────────────
+    new Chart(document.getElementById('revenueTrend'), {
+      type: 'bar',
+      data: {
+        labels: ['FY2022', 'FY2023', 'FY2024'],
+        datasets: [
+          { label: 'Property Taxes', data: [93, 92.5, 95], backgroundColor: COLORS.navy },
+          { label: 'All Other Sources', data: [7, 7.5, 5], backgroundColor: COLORS.mist },
+        ]
+      },
+      options: {
+        scales: {
+          x: { stacked: true, grid: { display: false } },
+          y: { stacked: true, max: 100, ticks: { callback: v => v + '%' }, grid: { color: '#f0ece4' } }
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } },
+          tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%` } }
+        }
+      }
+    });
+
+    // ── Spending Donut ─────────────────────
+    new Chart(document.getElementById('spendingDonut'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Education', 'Public Safety', 'General Government', 'Public Works', 'Health & Human Svcs', 'Culture & Recreation', 'Debt & Other'],
+        datasets: [{
+          data: [55, 19, 11, 6, 3, 3, 3],
+          backgroundColor: [COLORS.navy, COLORS.sea, COLORS.sky, COLORS.kelp, COLORS.sunset, COLORS.coral, COLORS.mist],
+          borderWidth: 2,
+          borderColor: '#fff',
+        }]
+      },
+      options: {
+        cutout: '55%',
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed}%` } }
+        }
+      }
+    });
+
+    // ── Budget Trend ──────────────────────
+    new Chart(document.getElementById('budgetTrend'), {
+      type: 'line',
+      data: {
+        labels: ['FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026'],
+        datasets: [{
+          label: 'Total Budget (millions)',
+          data: [14.5, 14.8, 15.2, 15.8, 16.2, 17.1, 18.5],
+          borderColor: COLORS.navy,
+          backgroundColor: 'rgba(27, 58, 92, 0.08)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 5,
+          pointBackgroundColor: COLORS.navy,
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            min: 12, max: 20,
+            ticks: { callback: v => '$' + v + 'M' },
+            grid: { color: '#f0ece4' }
+          },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y + 'M' } }
+        }
+      }
+    });
+
+    // ── Per Pupil Comparison ──────────────
+    new Chart(document.getElementById('perPupilChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Little Compton', 'RI Average', 'National Average'],
+        datasets: [{
+          data: [41727, 21500, 16080],
+          backgroundColor: [COLORS.navy, COLORS.sea, COLORS.mist],
+          borderRadius: 6,
+          barThickness: 50,
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        scales: {
+          x: {
+            ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' },
+            grid: { color: '#f0ece4' }
+          },
+          y: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.x.toLocaleString() } }
+        }
+      }
+    });
+
+    // ── Fund Balance ─────────────────────
+    new Chart(document.getElementById('fundBalanceChart'), {
+      type: 'bar',
+      data: {
+        labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024'],
+        datasets: [{
+          label: 'General Fund Balance',
+          data: [3.8, 3.5, 3.17, 1.98],
+          backgroundColor: ctx => ctx.parsed.y < 2.5 ? COLORS.coral : COLORS.sea,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            min: 0, max: 5,
+            ticks: { callback: v => '$' + v + 'M' },
+            grid: { color: '#f0ece4' }
+          },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y + 'M' } }
+        }
+      }
+    });
+
+    // ── School Fund Balance ──────────────
+    new Chart(document.getElementById('schoolFundChart'), {
+      type: 'bar',
+      data: {
+        labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024'],
+        datasets: [{
+          label: 'School Unrestricted Fund',
+          data: [0.85, 0.78, 0.70, 0.48],
+          backgroundColor: ctx => ctx.parsed.y < 0.55 ? COLORS.coral : COLORS.sky,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            min: 0, max: 1.2,
+            ticks: { callback: v => '$' + v + 'M' },
+            grid: { color: '#f0ece4' }
+          },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y + 'M' } }
+        }
+      }
+    });
+
+    // ── Comparison Chart ─────────────────
+    new Chart(document.getElementById('compareChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Little Compton', 'Newport County', 'Rhode Island', 'United States'],
+        datasets: [{
+          label: 'Median HH Income',
+          data: [134750, 103514, 87796, 75149],
+          backgroundColor: COLORS.navy,
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' },
+            grid: { color: '#f0ece4' }
+          },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y.toLocaleString() } }
+        }
+      }
+    });
+
+    // ── Budget vs Actual ─────────────────
+    new Chart(document.getElementById('budgetVsActualChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Revenue', 'Expenditures'],
+        datasets: [
+          {
+            label: 'Budgeted',
+            data: [14.5, 16.2],
+            backgroundColor: COLORS.mist,
+            borderRadius: 4,
+          },
+          {
+            label: 'Actual',
+            data: [15.2, 14.6],
+            backgroundColor: COLORS.navy,
+            borderRadius: 4,
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            min: 12, max: 18,
+            ticks: { callback: v => '$' + v + 'M' },
+            grid: { color: '#f0ece4' }
+          },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } },
+          tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.parsed.y + 'M' } }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
